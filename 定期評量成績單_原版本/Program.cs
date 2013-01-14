@@ -24,7 +24,7 @@ namespace 定期評量成績單
             if (!FISCA.Permission.UserAcl.Current["TeacherWord"].Executable) return;
             
             
-            var btn = K12.Presentation.NLDPanels.Student.RibbonBarItems["統計報表"]["報表"]["明德女中"]["成績相關報表"]["定期評量成績單(明德版)"];
+            var btn = K12.Presentation.NLDPanels.Student.RibbonBarItems["統計報表"]["報表"]["明德女中"]["成績相關報表"]["定期評量成績單(個人版)"];
             btn.Enable = false;
             K12.Presentation.NLDPanels.Student.SelectedSourceChanged += delegate { btn.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count > 0; };
             btn.Click += new EventHandler(Program_Click);
@@ -37,6 +37,40 @@ namespace 定期評量成績單
             }
         }
 
+        //普通科 有分 自然組 或 社會組
+        //decideNatureSociety(studentRec.RefClass.ClassName)
+        private static string decideNatureSociety(string className)
+        {
+            if (className.IndexOf("普") > -1)
+            {
+                if (className.IndexOf("一") > -1)
+                {
+                    // 高一 普通科不分組
+                    return "";
+                }
+                else
+                {
+                    // 高二 高三 普通科 分自然組 與 社會組
+                    if (className.IndexOf("自") > -1)
+                    {
+                        return "自";
+                    }
+                    if (className.IndexOf("社") > -1)
+                    {
+                        return "社";
+                    }
+                    if (className.IndexOf("乙") > -1)
+                    {
+                        return "自";
+                    }
+                    if (className.IndexOf("丙") > -1)
+                    {
+                        return "社";
+                    }
+                }
+            }
+            return "";
+        }
         private static string GetNumber(decimal? p)
         {
             if (p == null) return "";
@@ -255,6 +289,8 @@ namespace 定期評量成績單
                 table.Columns.Add("類別1加權平均");
                 table.Columns.Add("類別1加權平均排名");
                 table.Columns.Add("類別1加權平均排名母數");
+                //aaron
+                table.Columns.Add("類別1所修學分");
 
                 table.Columns.Add("類別排名2");
                 table.Columns.Add("類別2總分");
@@ -715,6 +751,10 @@ namespace 定期評量成績單
                         //aaron
                         //int tag1SubjectCreditSum = 0;
                         Dictionary<string, decimal>  tag1SubjectCreditSumList = new Dictionary<string, decimal>();
+                        //printSubjectCreditSum = 0;
+                        Dictionary<string, decimal> subjectCreditSumList = new Dictionary<string, decimal>();
+                        // aaron 普通科 有分 自然組 或 社會組
+                        string classNatureSocietyStr = "";
 
                         foreach (var gss in gradeyearStudents.Values)
                         {
@@ -723,7 +763,9 @@ namespace 定期評量成績單
                         bkw.ReportProgress(40);
                         foreach (string gradeyear in gradeyearStudents.Keys)
                         {
+                            //
                             //找出全年級學生
+                            //
                             foreach (var studentRec in gradeyearStudents[gradeyear])
                             {
                                 string studentID = studentRec.StudentID;
@@ -731,6 +773,8 @@ namespace 定期評量成績單
                                 bool rankPre = true;
                                 string tag1ID = "";
                                 string tag2ID = "";
+                                
+
                                 #region 分析學生所屬類別
                                 if (studentTags.ContainsKey(studentID))
                                 {
@@ -788,6 +832,9 @@ namespace 定期評量成績單
                                     int tag1SubjectCreditSum = 0;
                                     decimal tag2SubjectSumW = 0;
                                     int tag2SubjectCreditSum = 0;
+                                    //
+                                    // 單一學生考試成績
+                                    //
                                     foreach (var subjectName in studentExamSores[studentID].Keys)
                                     {
                                         if (conf.PrintSubjectList.Contains(subjectName))
@@ -802,7 +849,10 @@ namespace 定期評量成績單
                                                     printSubjectCount++;
                                                     //計算加權總分
                                                     printSubjectSumW += sceTakeRecord.ExamScore * decimal.ToInt16((decimal)sceTakeRecord.Credit);
+                                                    // BMK 一般 學分加總
                                                     printSubjectCreditSum += decimal.ToInt16((decimal)sceTakeRecord.Credit);
+                                                    
+
                                                     if (rank && sceTakeRecord.Status == "一般")//不在過濾名單且為一般生才做排名
                                                     {
                                                         if (sceTakeRecord.RefClass != null)
@@ -816,9 +866,14 @@ namespace 定期評量成績單
                                                         }
                                                         if (sceTakeRecord.Department != "")
                                                         {
-                                                            //BMK 科排名
-                                                            //各科目科排名
-                                                            key = "科排名" + sceTakeRecord.Department + "^^^" + gradeyear + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
+                                                            // 普通科 有分 自然組 或 社會組
+                                                            classNatureSocietyStr = "";
+                                                            if (studentRec.RefClass.ClassName.IndexOf("普") > -1)
+                                                            {
+                                                                classNatureSocietyStr = decideNatureSociety(studentRec.RefClass.ClassName);
+                                                            }
+                                                            //BMK 各科目科排名
+                                                            key = "科排名" + sceTakeRecord.Department + classNatureSocietyStr + "^^^" + gradeyear + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
                                                             if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                                             if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                                             ranks[key].Add(sceTakeRecord.ExamScore);
@@ -852,7 +907,7 @@ namespace 定期評量成績單
                                                     {
                                                         if (sceTakeRecord.RefClass != null)
                                                         {
-                                                            //各科目 班排名
+                                                            //前次考試 各科目 班排名
                                                             key = "前次班排名" + sceTakeRecord.RefClass.ClassID + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
                                                             if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                                             if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
@@ -861,14 +916,21 @@ namespace 定期評量成績單
                                                         }
                                                         if (sceTakeRecord.Department != "")
                                                         {
-                                                            //各科目 科排名
-                                                            key = "前次科排名" + sceTakeRecord.Department + "^^^" + gradeyear + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
+
+                                                            // 普通科 有分 自然組 或 社會組
+                                                            classNatureSocietyStr = "";
+                                                            if (studentRec.RefClass.ClassName.IndexOf("普") > -1)
+                                                            {
+                                                                classNatureSocietyStr = decideNatureSociety(studentRec.RefClass.ClassName);
+                                                            }
+                                                            //前次考試 各科目 科排名
+                                                            key = "前次科排名" + sceTakeRecord.Department + classNatureSocietyStr + "^^^" + gradeyear + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
                                                             if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                                             if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                                             ranks[key].Add(sceTakeRecord.ExamScore);
                                                             rankStudents[key].Add(studentID);
                                                         }
-                                                        //各科目 全校排名
+                                                        //前次考試 各科目 全校排名
                                                         key = "前次全校排名" + gradeyear + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
                                                         if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                                         if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
@@ -883,6 +945,7 @@ namespace 定期評量成績單
                                             }
                                             #endregion
                                         }
+                                        // BMK Tag1 計算總分
                                         if (tag1ID != "" && conf.TagRank1SubjectList.Contains(subjectName))
                                         {
                                             #region 有Tag1且是排名科目
@@ -894,13 +957,9 @@ namespace 定期評量成績單
                                                     tag1SubjectCount++;
                                                     //計算加權總分
                                                     tag1SubjectSumW += sceTakeRecord.ExamScore * decimal.ToInt16((decimal)sceTakeRecord.Credit);
-                                                    // BMK 學分
+                                                    // BMK Tag1 學分
                                                     tag1SubjectCreditSum += decimal.ToInt16((decimal)sceTakeRecord.Credit);
-                                                    if (tag1SubjectCreditSumList.ContainsKey(sceTakeRecord.StudentID))
-                                                    {
-                                                        tag1SubjectCreditSumList[sceTakeRecord.StudentID] = tag1SubjectCreditSum;
-                                                    }else
-                                                        tag1SubjectCreditSumList.Add(sceTakeRecord.StudentID, tag1SubjectCreditSum);
+                                                    
                                                     //各科目類別1排名
                                                     if (rank && sceTakeRecord.Status == "一般")//不在過濾名單且為一般生才做排名
                                                     {
@@ -954,7 +1013,8 @@ namespace 定期評量成績單
                                             #endregion
                                         }
 
-                                    }
+                                    }// 單一學生考試成績
+
                                     if (printSubjectCount > 0)
                                     {
                                         #region 有列印科目處理加總成績
@@ -973,8 +1033,16 @@ namespace 定期評量成績單
                                             if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                             ranks[key].Add(printSubjectSum);
                                             rankStudents[key].Add(studentID);
+                                            
+                                            // 普通科 有分 自然組 或 社會組
+                                            classNatureSocietyStr = "";
+                                            if (studentRec.RefClass.ClassName.IndexOf("普") > -1)
+                                            {
+                                                classNatureSocietyStr = decideNatureSociety(studentRec.RefClass.ClassName);
+                                            }
+                                            
                                             //總分科排名
-                                            key = "總分科排名" + studentRec.Department + "^^^" + gradeyear;
+                                            key = "總分科排名" + studentRec.Department + classNatureSocietyStr + "^^^" + gradeyear;
                                             if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                             if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                             ranks[key].Add(printSubjectSum);
@@ -992,7 +1060,8 @@ namespace 定期評量成績單
                                             ranks[key].Add(Math.Round(printSubjectSum / printSubjectCount, 2, MidpointRounding.AwayFromZero));
                                             rankStudents[key].Add(studentID);
                                             //平均科排名
-                                            key = "平均科排名" + studentRec.Department + "^^^" + gradeyear;
+                                            // aaron
+                                            key = "平均科排名" + studentRec.Department + classNatureSocietyStr + "^^^" + gradeyear;
                                             if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                             if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                             ranks[key].Add(Math.Round(printSubjectSum / printSubjectCount, 2, MidpointRounding.AwayFromZero));
@@ -1008,6 +1077,9 @@ namespace 定期評量成績單
                                         if (printSubjectCreditSum > 0)
                                         {
                                             #region 有總學分數處理加總
+
+                                            // BMK 學分數加總
+                                            subjectCreditSumList.Add(studentID, printSubjectCreditSum);
                                             //加權總分
                                             studentPrintSubjectSumW.Add(studentID, printSubjectSumW);
                                             //加權平均四捨五入至小數點第二位
@@ -1023,8 +1095,16 @@ namespace 定期評量成績單
                                                 if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                                 ranks[key].Add(printSubjectSumW);
                                                 rankStudents[key].Add(studentID);
+
+                                                // 普通科 有分 自然組 或 社會組
+                                                classNatureSocietyStr = "";
+                                                if (studentRec.RefClass.ClassName.IndexOf("普") > -1)
+                                                {
+                                                    classNatureSocietyStr = decideNatureSociety(studentRec.RefClass.ClassName);
+                                                }
+                                                
                                                 //加權總分科排名
-                                                key = "加權總分科排名" + studentRec.Department + "^^^" + gradeyear;
+                                                key = "加權總分科排名" + studentRec.Department + classNatureSocietyStr + "^^^" + gradeyear;
                                                 if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                                 if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                                 ranks[key].Add(printSubjectSumW);
@@ -1042,7 +1122,7 @@ namespace 定期評量成績單
                                                 ranks[key].Add(Math.Round(printSubjectSumW / printSubjectCreditSum, 2, MidpointRounding.AwayFromZero));
                                                 rankStudents[key].Add(studentID);
                                                 //加權平均科排名
-                                                key = "加權平均科排名" + studentRec.Department + "^^^" + gradeyear;
+                                                key = "加權平均科排名" + studentRec.Department + classNatureSocietyStr + "^^^" + gradeyear;
                                                 if (!ranks.ContainsKey(key)) ranks.Add(key, new List<decimal>());
                                                 if (!rankStudents.ContainsKey(key)) rankStudents.Add(key, new List<string>());
                                                 ranks[key].Add(Math.Round(printSubjectSumW / printSubjectCreditSum, 2, MidpointRounding.AwayFromZero));
@@ -1060,6 +1140,9 @@ namespace 定期評量成績單
                                     //類別1總分平均排名
                                     if (tag1SubjectCount > 0)
                                     {
+                                        // aaron 類別1 tag1 學分數加總
+                                        tag1SubjectCreditSumList.Add(studentID, tag1SubjectCreditSum);
+
                                         //總分
                                         studentTag1SubjectSum.Add(studentID, tag1SubjectSum);
                                         //平均四捨五入至小數點第二位
@@ -1143,7 +1226,7 @@ namespace 定期評量成績單
                                 }
                                 progressCount++;
                                 bkw.ReportProgress(40 + progressCount * 30 / total);
-                            }
+                            }//找出全年級學生
                         }
                         foreach (var k in ranks.Keys)
                         {
@@ -1286,7 +1369,9 @@ namespace 定期評量成績單
                         bkw.ReportProgress(70);
                         elseReady.WaitOne();
                         progressCount = 0;
+                        // BMK 填入資料表
                         #region 填入資料表
+                        // 頁面所選的學生
                         foreach (var stuRec in studentRecords)
                         {
                             //BMK -- 只要考試其一科沒有成績 就不參與排名 也就沒有成績單
@@ -1480,7 +1565,15 @@ namespace 定期評量成績單
                                                         #region 科排名及落點分析
                                                         if (stuRec.Department != "")
                                                         {
-                                                            key = "科排名" + stuRec.Department + "^^^" + gradeYear + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
+                                                            //aaron 
+                                                            // 普通科 有分 自然組 或 社會組
+                                                            classNatureSocietyStr = "";
+                                                            if (stuRec.RefClass.ClassName.IndexOf("普") > -1)
+                                                            {
+                                                                classNatureSocietyStr = decideNatureSociety(stuRec.RefClass.ClassName);
+                                                            }
+                                                            // 各科目 科排名
+                                                            key = "科排名" + stuRec.Department + classNatureSocietyStr + "^^^" + gradeYear + "^^^" + sceTakeRecord.Subject + "^^^" + sceTakeRecord.SubjectLevel;
                                                             if (rankStudents.ContainsKey(key) && rankStudents[key].Contains(studentID))//明確判斷學生是否參與排名
                                                             {
                                                                 row["科排名" + subjectIndex] = ranks[key].IndexOf(sceTakeRecord.ExamScore) + 1;
@@ -1702,12 +1795,18 @@ namespace 定期評量成績單
                                 }
                             }
                             #endregion
+                            // BMK 一般 綜合成績 總分
                             #region 總分
                             if (studentPrintSubjectSum.ContainsKey(studentID))
                             {
                                 //aaron
-                                //row["所修學分"] = tag1SubjectCreditSum;
-                                row["所修學分"] = tag1SubjectCreditSumList[studentID];
+                                if (subjectCreditSumList.ContainsKey(studentID))
+                                {
+                                    //row["所修學分"] = tag1SubjectCreditSum;
+                                    //row["所修學分"] = tag1SubjectCreditSumList[studentID];
+                                    row["所修學分"] = subjectCreditSumList[studentID];
+                                }
+                                
 
                                 row["總分"] = studentPrintSubjectSum[studentID];
                                 //BMK 總分班排名                                
@@ -1752,8 +1851,14 @@ namespace 定期評量成績單
                                     row["總分班組距count20Down"] = analytics[key + "^^^count20Down"];
                                     row["總分班組距count10Down"] = analytics[key + "^^^count10Down"];
                                 }
+                                // 普通科 有分 自然組 或 社會組
+                                classNatureSocietyStr = "";
+                                if (stuRec.RefClass.ClassName.IndexOf("普") > -1)
+                                {
+                                    classNatureSocietyStr = decideNatureSociety(stuRec.RefClass.ClassName);
+                                }
                                 //總分科排名
-                                key = "總分科排名" + stuRec.Department + "^^^" + gradeYear;
+                                key = "總分科排名" + stuRec.Department + classNatureSocietyStr + "^^^" + gradeYear;
                                 if (rankStudents.ContainsKey(key) && rankStudents[key].Contains(studentID))//明確判斷學生是否參與排名
                                 {
                                     row["總分科排名"] = ranks[key].IndexOf(studentPrintSubjectSum[studentID]) + 1;
@@ -1885,7 +1990,13 @@ namespace 定期評量成績單
                                     row["平均班組距count20Down"] = analytics[key + "^^^count20Down"];
                                     row["平均班組距count10Down"] = analytics[key + "^^^count10Down"];
                                 }
-                                key = "平均科排名" + stuRec.Department + "^^^" + gradeYear;
+                                // 普通科 有分 自然組 或 社會組
+                                classNatureSocietyStr = "";
+                                if (stuRec.RefClass.ClassName.IndexOf("普") > -1)
+                                {
+                                    classNatureSocietyStr = decideNatureSociety(stuRec.RefClass.ClassName);
+                                }
+                                key = "平均科排名" + stuRec.Department + classNatureSocietyStr + "^^^" + gradeYear;
                                 if (rankStudents.ContainsKey(key) && rankStudents[key].Contains(studentID))//明確判斷學生是否參與排名
                                 {
                                     row["平均科排名"] = ranks[key].IndexOf(studentPrintSubjectAvg[studentID]) + 1;
@@ -2014,7 +2125,13 @@ namespace 定期評量成績單
                                     row["加權總分班組距count20Down"] = analytics[key + "^^^count20Down"];
                                     row["加權總分班組距count10Down"] = analytics[key + "^^^count10Down"];
                                 }
-                                key = "加權總分科排名" + stuRec.Department + "^^^" + gradeYear;
+                                // 普通科 有分 自然組 或 社會組
+                                classNatureSocietyStr = "";
+                                if (stuRec.RefClass.ClassName.IndexOf("普") > -1)
+                                {
+                                    classNatureSocietyStr = decideNatureSociety(stuRec.RefClass.ClassName);
+                                }
+                                key = "加權總分科排名" + stuRec.Department + classNatureSocietyStr + "^^^" + gradeYear;
                                 if (rankStudents.ContainsKey(key) && rankStudents[key].Contains(studentID))//明確判斷學生是否參與排名
                                 {
                                     row["加權總分科排名"] = ranks[key].IndexOf(studentPrintSubjectSumW[studentID]) + 1;
@@ -2143,7 +2260,13 @@ namespace 定期評量成績單
                                     row["加權平均班組距count20Down"] = analytics[key + "^^^count20Down"];
                                     row["加權平均班組距count10Down"] = analytics[key + "^^^count10Down"];
                                 }
-                                key = "加權平均科排名" + stuRec.Department + "^^^" + gradeYear;
+                                // 普通科 有分 自然組 或 社會組
+                                classNatureSocietyStr = "";
+                                if (stuRec.RefClass.ClassName.IndexOf("普") > -1)
+                                {
+                                    classNatureSocietyStr = decideNatureSociety(stuRec.RefClass.ClassName);
+                                }
+                                key = "加權平均科排名" + stuRec.Department + classNatureSocietyStr + "^^^" + gradeYear;
                                 if (rankStudents.ContainsKey(key) && rankStudents[key].Contains(studentID))//明確判斷學生是否參與排名
                                 {
                                     row["加權平均科排名"] = ranks[key].IndexOf(studentPrintSubjectAvgW[studentID]) + 1;
@@ -2227,6 +2350,7 @@ namespace 定期評量成績單
                                 }
                             }
                             #endregion
+                            // BMk 類別1綜合成績
                             #region 類別1綜合成績
                             if (studentTag1Group.ContainsKey(studentID))
                             {
@@ -2239,6 +2363,12 @@ namespace 定期評量成績單
                                 }
                                 if (studentTag1SubjectSum.ContainsKey(studentID))
                                 {
+                                    //aaron
+                                    if (tag1SubjectCreditSumList.ContainsKey(studentID))
+                                    {
+                                        row["類別1所修學分"] = tag1SubjectCreditSumList[studentID];
+                                    }
+
                                     row["類別1總分"] = studentTag1SubjectSum[studentID];
                                     key = "類別1總分排名" + "^^^" + gradeYear + "^^^" + studentTag1Group[studentID];
                                     if (rankStudents.ContainsKey(key) && rankStudents[key].Contains(studentID))
@@ -2672,7 +2802,7 @@ namespace 定期評量成績單
                             table.Rows.Add(row);
                             progressCount++;
                             bkw.ReportProgress(70 + progressCount * 20 / selectedStudents.Count);
-                        }
+                        }// 頁面所選的學生
                         #endregion
                         bkw.ReportProgress(90);
                         document = conf.Template;
@@ -2682,7 +2812,7 @@ namespace 定期評量成績單
                     {
                         exc = exception;
                     }
-                };
+                };//DoWork
                 bkw.RunWorkerAsync();
             }
         }
