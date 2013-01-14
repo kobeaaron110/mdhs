@@ -127,7 +127,7 @@ namespace 定期評量成績單
             //aaron
             // BMK ------- UDT 
             UDTTeacherWords teacherWord = new UDTTeacherWords();
-            
+                                    
             //UDTAccess.Insert(teacherWord);
             //string whereClause = string.Format("班級編號='{0}'", "ClassID");
             //List<UDTTeacherWords> healthys = UDTAccess.Select(whereClause);
