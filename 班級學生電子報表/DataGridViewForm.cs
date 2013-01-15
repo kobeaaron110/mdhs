@@ -29,32 +29,56 @@ namespace 班級學生電子報表
         private void ReLoad()
         {
             dataGridView1.Rows.Clear();
+
+            // ----------- 載入 Class ---------
             foreach (string each in classIDList)
             {
-                //傳入 class類型 / classID系統編號
+                //傳入 class 類型 / classID 系統編號
                 //取得該班級的所有電子報表
                 DSXmlHelper helper = QueryElectronicPaper.GetPaperItemByViewer("Class", each).GetContent();
 
                 foreach (XmlElement paper in helper.GetElements("PaperItem"))
                 {
                     DSXmlHelper paperHelper = new DSXmlHelper(paper);
-
                     DataGridViewRow row = new DataGridViewRow();
                     row.CreateCells(dataGridView1);
-
                     //儲存電子報表編號
                     row.Cells[0].Value = paperHelper.GetText("@ID");
-
                     //班級名稱
                     ClassRecord cr = K12.Data.Class.SelectByID(each);
                     row.Cells[1].Value = cr.Name;
-
                     //電子報表名稱
                     row.Cells[2].Value = paperHelper.GetText("PaperName");
                     //製表日期
                     row.Cells[3].Value = paperHelper.GetText("Timestamp");
-
                     dataGridView1.Rows.Add(row);
+                }
+            }
+
+            // ----------- 載入 Student ---------
+            foreach (string each in classIDList)
+            {
+                //傳入 Student 類型 / StudentID 系統編號
+                //取得該班級的所有電子報表
+                //班級名稱下 所有學生
+                List<StudentRecord> srList = K12.Data.Student.SelectByClassID(each);
+                foreach (StudentRecord eachSr in srList)
+                {
+                    DSXmlHelper helper = QueryElectronicPaper.GetPaperItemByViewer("Student", eachSr.ID).GetContent();
+                    foreach (XmlElement paper in helper.GetElements("PaperItem"))
+                    {
+                        DSXmlHelper paperHelper = new DSXmlHelper(paper);
+                        DataGridViewRow row = new DataGridViewRow();
+                        row.CreateCells(dataGridView1);
+                        //儲存電子報表編號
+                        row.Cells[0].Value = paperHelper.GetText("@ID");
+                        row.Cells[1].Value = eachSr.Name;
+                        //電子報表名稱
+                        row.Cells[2].Value = paperHelper.GetText("PaperName");
+                        //製表日期
+                        row.Cells[3].Value = paperHelper.GetText("Timestamp");
+                        dataGridView1.Rows.Add(row);
+                    }
                 }
             }
 

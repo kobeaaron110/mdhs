@@ -70,20 +70,31 @@ namespace 班級學生電子報表
                     {
                         each_page = TemplateWord;
                         each_page.Save(stream, SaveFormat.Doc);
+
+                        //取得所選擇的班級ID
+                        List<string> ClassID = K12.Presentation.NLDPanels.Class.SelectedSource;
+                        foreach (string each in ClassID)
+                        {
+                            //傳參數給PaperItem
+                            //格式 / 內容 / 對象的系統編號
+                            paperForClass.Append(new PaperItem(PaperFormat.Office2003Doc, stream, each));
+                        }
                     }
                     else
                     {
                         each_pageExcel = TemplateExcel;
+                        each_pageExcel.Save(stream, FileFormatType.Excel2003);
+
+                        //取得所選擇的班級ID
+                        List<string> ClassID = K12.Presentation.NLDPanels.Class.SelectedSource;
+                        foreach (string each in ClassID)
+                        {
+                            //傳參數給PaperItem
+                            //格式 / 內容 / 對象的系統編號
+                            paperForClass.Append(new PaperItem(PaperFormat.Office2003Xls, stream, each));
+                        }
                     }
 
-                    //取得所選擇的班級ID
-                    List<string> ClassID = K12.Presentation.NLDPanels.Class.SelectedSource;
-                    foreach (string each in ClassID)
-                    {
-                        //傳參數給PaperItem
-                        //格式 / 內容 / 對象的系統編號
-                        paperForClass.Append(new PaperItem(PaperFormat.Office2003Doc, stream, each));
-                    }
 
                     //開始上傳
                     SmartSchool.ePaper.DispatcherProvider.Dispatch(paperForClass); 
@@ -105,19 +116,28 @@ namespace 班級學生電子報表
                         each_page.Save(stream, SaveFormat.Doc);
                         doc.Sections.Add(doc.ImportNode(each_page.Sections[0], true)); //合併至doc
 
+                        List<string> ClassID = K12.Presentation.NLDPanels.Class.SelectedSource; //取得畫面上所選班級的ID清單
+                        List<StudentRecord> srList = Student.SelectByClassIDs(ClassID); //依據班級ID,取得學生物件
+                        foreach (StudentRecord sr in srList)
+                        {
+                            //傳參數給PaperItem
+                            //格式 / 內容 / 對象的系統編號
+                            paperForStudent.Append(new PaperItem(PaperFormat.Office2003Doc, stream, sr.ID));
+                        }
                     }
                     else
                     {
                         each_pageExcel = TemplateExcel;
-                    }
+                        each_pageExcel.Save(stream, FileFormatType.Excel2003);
 
-                    List<string> ClassID = K12.Presentation.NLDPanels.Class.SelectedSource; //取得畫面上所選班級的ID清單
-                    List<StudentRecord> srList = Student.SelectByClassIDs(ClassID); //依據班級ID,取得學生物件
-                    foreach (StudentRecord sr in srList)
-                    {
-                        //傳參數給PaperItem
-                        //格式 / 內容 / 對象的系統編號
-                        paperForStudent.Append(new PaperItem(PaperFormat.Office2003Doc, stream, sr.ID));
+                        List<string> ClassID = K12.Presentation.NLDPanels.Class.SelectedSource; //取得畫面上所選班級的ID清單
+                        List<StudentRecord> srList = Student.SelectByClassIDs(ClassID); //依據班級ID,取得學生物件
+                        foreach (StudentRecord sr in srList)
+                        {
+                            //傳參數給PaperItem
+                            //格式 / 內容 / 對象的系統編號
+                            paperForStudent.Append(new PaperItem(PaperFormat.Office2003Xls, stream, sr.ID));
+                        }
                     }
 
                     //開始上傳
@@ -154,6 +174,7 @@ namespace 班級學生電子報表
                     if (dialog.FileName.IndexOf(".xls") > -1)
                     {
                         TemplateExcel = new Aspose.Cells.Workbook();
+                        TemplateExcel.Open(dialog.FileName);
                         IsWord = false;
                     }
                     //Template = new Aspose.Words.Document(dialog.FileName);
