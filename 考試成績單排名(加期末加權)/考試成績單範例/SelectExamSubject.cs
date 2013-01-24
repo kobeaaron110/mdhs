@@ -410,7 +410,7 @@ namespace 考試成績單範例
             {
                 // 2012-12-19 aaron
                 InitailChiEngMathStrArray(classRec);
-
+                int indexAvg = 0;
                 string sheetName = classRec.ClassName.Replace(":", "_");//避免在sheetName中出現":"(Eexcel不支援)
                 if (classRec.GradeYear == "" || classRec.GradeYear == "未分年級")
                     continue;
@@ -444,6 +444,8 @@ namespace 考試成績單範例
                 Dictionary<StudentRecord, Dictionary<string, int>> classExamScoreTime = new Dictionary<StudentRecord, Dictionary<string, int>>();
                 //考科的考試次數加權
                 Dictionary<StudentRecord, Dictionary<string, decimal>> classExamScoreTime0 = new Dictionary<StudentRecord, Dictionary<string, decimal>>();
+                // aaron 課程_學分數
+                Dictionary<string, decimal> subjectCredit = new Dictionary<string, decimal>(); 
                 foreach (StudentRecord studentRec in classRec.Students)
                 {
                     //加入table
@@ -474,7 +476,8 @@ namespace 考試成績單範例
                         {
                             //把科目、級別、學分數兜成 "_科目_級別_學分數_"的字串，這個字串在不同科目級別學分數會成為唯一值
                             //string key = attendRec.Subject + "^_^" + attendRec.SubjectLevel + "^_^" + attendRec.Credit;
-                            string key = attendRec.Subject;
+                            // BMK ---- aaron 2013-01-24 key = 科目
+                            string key = attendRec.Subject ;
                             bool hasScore = false;
                             //5/29列印全部包含教師未輸入的科目
                             if (!groups.Contains(key))
@@ -482,11 +485,12 @@ namespace 考試成績單範例
                             #region 檢查這個KEY有沒有評分同時計算總分平均及是否可排名
                             foreach (ExamScoreInfo examScore in studentRec.ExamScoreList)
                             {
-                                if ((examScore.ExamName == "第一次段考" || examScore.ExamName == "第二次段考" || examScore.ExamName == "期末考") && key == examScore.Subject)
+                                if ((examScore.ExamName == "第一次段考" || examScore.ExamName == "第二次段考" || examScore.ExamName == "期末考") && key == examScore.Subject )
                                 {
                                     //是要列印的科目
                                     //if ( !groups.Contains(key) )
                                     //    groups.Add(key);
+                                    // BMK 一般正常成績
                                     hasScore = true;
                                     if (examScore.SpecialCase == "")//一般正常成績
                                     {
@@ -496,6 +500,12 @@ namespace 考試成績單範例
                                             classExamScoreTable[studentRec].Add(key, "");
                                             classExamScoreTime[studentRec].Add(key, 1);
                                             classExamScoreTime0[studentRec].Add(key, 1);
+
+                                            //aaron  subjectCredit
+                                            if (!subjectCredit.ContainsKey(key))
+                                            {
+                                                subjectCredit.Add(key, examScore.Credit);
+                                            }
                                         }
                                         else
                                         {
@@ -557,7 +567,15 @@ namespace 考試成績單範例
                     SbjCount = classExamScoreTable0[studentRec].Keys.Count;
                     foreach (string var in classExamScoreTable0[studentRec].Keys)
                     {
-                        classExamScoreTable[studentRec][var] = (decimal.Parse(classExamScoreTable0[studentRec][var]) / classExamScoreTime0[studentRec][var]).ToString();
+                        // 2013-01-24 aaron
+                        // BMK 應林主任要求 科目 = 科目成績 * (1/1.1/1.2) * 學分數  , 不除 (1/1.1/1.2) * 學分數
+                        // 2013-01-24 pm:5:00  應林主任要求 科目 = 科目成績 * (1/1.1/1.2) * 學分數(只有國英數)  , 不除 (1/1.1/1.2) * 學分數(只有國英數)
+                        // 第一次月考權重 1
+                        // 第二次月考權重 1.1
+                        // 第三次月考權重 1.2
+                        //classExamScoreTable[studentRec][var] = (decimal.Parse(classExamScoreTable0[studentRec][var]) / classExamScoreTime0[studentRec][var]).ToString();
+                        //classExamScoreTable[studentRec][var] = (decimal.Parse(classExamScoreTable0[studentRec][var]) * subjectCredit[var]).ToString();
+                        classExamScoreTable[studentRec][var] = (decimal.Parse(classExamScoreTable0[studentRec][var]) ).ToString();
                         sum += decimal.Parse(classExamScoreTable[studentRec][var]);
                     }
                     classExamScoreTable[studentRec].Add("加權總分", scoreCount.ToString());
@@ -638,9 +656,10 @@ namespace 考試成績單範例
 
                 #endregion
 
+                // BMK 改用Excel列印
                 #region 改用Excel列印
                 #region 建立樣板
-                //新增一個Sheet
+                // 新增一個Sheet
                 int newSheetIndex = template.Worksheets.AddCopy(0);
                 //這一個新增的sheet
                 Worksheet sheet1 = template.Worksheets[newSheetIndex];
@@ -778,6 +797,7 @@ namespace 考試成績單範例
                             //decimal score;
                             int startindex = 3;
                             string Formula = "";
+                            
                             //startindex += classcnt * 70;
                             if (classExamScoreTable[classRec.Students[i]].ContainsKey(key))
                             {
@@ -798,7 +818,10 @@ namespace 考試成績單範例
                                         else if (subj == "英文")
                                             Formula += ":";
                                         else
-                                            Formula += column_str[sbjcount] + (studentIndex + 1) + ")*1.2+SUM(";
+                                        {
+                                            //Formula += column_str[sbjcount] + (studentIndex + 1) + ")*1.2+SUM(";
+                                            Formula += column_str[sbjcount] + (studentIndex + 1) + ")*4+SUM(";
+                                        }
                                     }
 
                                     foreach (string subj in pro_groups)
@@ -810,34 +833,36 @@ namespace 考試成績單範例
                                             Formula += column_str[sbjcount] + (studentIndex + 1) + ":";
                                     }
                                     sheet1.Cells[studentIndex, index].R1C1Formula = Formula + ")";
+                                    //sheet1.Cells[studentIndex, index].R1C1Formula = "=SUM(C" + (studentIndex + 1) + ":" + column_str[groups.Count] + (studentIndex + 1) + ")";
                                 }
                                 else if (key == "平均")
                                 {
                                     sbjcount = 0;
-                                    Formula = "=(SUM(";
-                                    foreach (string subj in chiEngMathStrArray)
-                                    {
-                                        //string subj = key1.Substring(0, key1.IndexOf("^_^"));
-                                        sbjcount++;
-                                        if (subj == "國文")
-                                            Formula += column_str[sbjcount] + (studentIndex + 1);
-                                        else if (subj == "英文")
-                                            Formula += ":";
-                                        else
-                                            Formula += column_str[sbjcount] + (studentIndex + 1) + ")*1.2+SUM(";
-                                    }
+                                    indexAvg = index;
+                                    //Formula = "=(SUM(";
+                                    //foreach (string subj in chiEngMathStrArray)
+                                    //{
+                                    //    //string subj = key1.Substring(0, key1.IndexOf("^_^"));
+                                    //    sbjcount++;
+                                    //    if (subj == "國文")
+                                    //        Formula += column_str[sbjcount] + (studentIndex + 1);
+                                    //    else if (subj == "英文")
+                                    //        Formula += ":";
+                                    //    else
+                                    //        Formula += column_str[sbjcount] + (studentIndex + 1) + ")*1.2+SUM(";
+                                    //}
 
-                                    foreach (string subj in pro_groups)
-                                    {
-                                        sbjcount++;
-                                        if (sbjcount == groups.Count)
-                                            Formula += column_str[sbjcount] + (studentIndex + 1);
-                                        else if (sbjcount == 4)
-                                            Formula += column_str[sbjcount] + (studentIndex + 1) + ":";
-                                    }
-                                    Formula += "))/(3.6+" + (groups.Count - 3) + ")";
-                                    sheet1.Cells[studentIndex, index].R1C1Formula = Formula;
-                                    sheet1.Cells[studentIndex, index].Style.Number = 2;
+                                    //foreach (string subj in pro_groups)
+                                    //{
+                                    //    sbjcount++;
+                                    //    if (sbjcount == groups.Count)
+                                    //        Formula += column_str[sbjcount] + (studentIndex + 1);
+                                    //    else if (sbjcount == 4)
+                                    //        Formula += column_str[sbjcount] + (studentIndex + 1) + ":";
+                                    //}
+                                    //Formula += "))/(3.6+" + (groups.Count - 3) + ")";
+                                    //sheet1.Cells[studentIndex, index].R1C1Formula = Formula;
+                                    //sheet1.Cells[studentIndex, index].Style.Number = 2;
                                 }
                                 else if (key == "總分排名")
                                 {
@@ -958,9 +983,10 @@ namespace 考試成績單範例
 
                 #endregion
                 bkw.ReportProgress((int)(++progress * 100.0d / selectedClasses.Count));
+                sheet1.Cells.DeleteColumn(indexAvg);
             }
             #endregion
-            //將R欄刪除
+            //將R欄刪除 
             //sheet1.Cells.DeleteColumn(17);
             template.Worksheets.RemoveAt(0);
             e.Result = template;
