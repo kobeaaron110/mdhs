@@ -1,0 +1,16 @@
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\ResolveAssemblyReference.cache
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\考試成績單範例.SelectExamSubject.resources
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.Properties.Resources.resources
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.csproj.GenerateResource.Cache
+C:\SmartSchool 0.2.19 build 4(20080407)\Customize\月考成績排名_期末加權.dll
+C:\SmartSchool 0.2.19 build 4(20080407)\Customize\月考成績排名_期末加權.pdb
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.dll
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.pdb
+D:\dep\SmartSchool 0.2.19 build 4(20080407)\Customize\月考成績排名_期末加權.dll
+D:\dep\SmartSchool 0.2.19 build 4(20080407)\Customize\月考成績排名_期末加權.pdb
+D:\code\2005\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\ResolveAssemblyReference.cache
+D:\code\2005\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\考試成績單範例.SelectExamSubject.resources
+D:\code\2005\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.Properties.Resources.resources
+D:\code\2005\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.csproj.GenerateResource.Cache
+D:\code\2005\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.dll
+D:\code\2005\考試成績單排名(加期末加權)\考試成績單範例\obj\Debug\月考成績排名_期末加權.pdb

@@ -1,0 +1,62 @@
+C:\Users\lelala\Desktop\Debug\Customize\考試成績單範例.dll
+C:\Users\lelala\Desktop\Debug\Customize\考試成績單範例.pdb
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Debug\考試成績單範例.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Debug\考試成績單範例.pdb
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Debug\考試成績單範例.csproj.GenerateResource.Cache
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\SmartSchool\Customize\考試成績單範例.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\SmartSchool\Customize\考試成績單範例.pdb
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\SmartSchool\Customize\IntelliSchool.DSA.ClientFramework.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\SmartSchool\Customize\IntelliSchool.DSA.ClientFramework.xml
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Debug\考試成績單範例.Properties.Resources.resources
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Release\考試成績單範例.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Release\考試成績單範例.pdb
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Release\IntelliSchool.DSA.ClientFramework.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Release\IntelliSchool.DSA.ClientFramework.xml
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Release\ResolveAssemblyReference.cache
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Release\考試成績單範例.ExamScoreListSubjectSelector.resources
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Release\考試成績單範例.Properties.Resources.resources
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Release\考試成績單範例.csproj.GenerateResource.Cache
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Release\考試成績單範例.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Release\考試成績單範例.pdb
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\obj\Debug\考試成績單範例.SelectExamSubject.resources
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\考試成績單範例.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\考試成績單範例.pdb
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\Aspose.Cells.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\Aspose.Words.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\IntelliSchool.DSA.ClientFramework.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\SmartSchool.Customization.Data.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\SmartSchool.Customization.PlugIn.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\SmartSchool.Customization.Data.xml
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例\考試成績單範例\bin\Debug\SmartSchool.Customization.PlugIn.xml
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\obj\Debug\考試成績單範例.SelectExamSubject.resources
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\obj\Debug\考試成績單範例.Properties.Resources.resources
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\obj\Debug\考試成績單範例.csproj.GenerateResource.Cache
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\考試成績單範例.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\考試成績單範例.pdb
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\Aspose.Cells.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\Aspose.Words.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\IntelliSchool.DSA.ClientFramework.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\SmartSchool.Customization.Data.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\SmartSchool.Customization.PlugIn.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\SmartSchool.Customization.Data.xml
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\bin\Debug\SmartSchool.Customization.PlugIn.xml
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\obj\Debug\考試成績單範例.dll
+C:\Users\lelala\Documents\Visual Studio 2005\Projects\考試成績單範例 - 複製\考試成績單範例\obj\Debug\考試成績單範例.pdb
+C:\Users\lelala\Documents\專案\Genius\SmartSchool V0.00.15\SmartNavigator\bin\Debug\PlugIn\考試成績單範例.dll
+C:\Users\lelala\Documents\專案\Genius\SmartSchool V0.00.15\SmartNavigator\bin\Debug\PlugIn\考試成績單範例.pdb
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(Excel版)\考試成績單範例\obj\Debug\ResolveAssemblyReference.cache
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(Excel版)\考試成績單範例\obj\Debug\考試成績單範例.SelectExamSubject.resources
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(Excel版)\考試成績單範例\obj\Debug\考試成績單Excel.Properties.Resources.resources
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(Excel版)\考試成績單範例\obj\Debug\考試成績單範例.csproj.GenerateResource.Cache
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(Excel版)\考試成績單範例\obj\Debug\考試成績單Excel.dll
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(Excel版)\考試成績單範例\obj\Debug\考試成績單Excel.pdb
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(前三名)\考試成績單範例\obj\Debug\ResolveAssemblyReference.cache
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(前三名)\考試成績單範例\obj\Debug\考試成績單範例.SelectExamSubject.resources
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(前三名)\考試成績單範例\obj\Debug\月考成績前三名.Properties.Resources.resources
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(前三名)\考試成績單範例\obj\Debug\考試成績單範例.csproj.GenerateResource.Cache
+C:\SmartSchool 0.2.19 build 4(20080407)\Customize\月考成績前三名.dll
+C:\SmartSchool 0.2.19 build 4(20080407)\Customize\月考成績前三名.pdb
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(前三名)\考試成績單範例\obj\Debug\月考成績前三名.dll
+C:\SmartSchool 0.2.19 build 4(20080407)\外掛程式\考試成績單範例(前三名)\考試成績單範例\obj\Debug\月考成績前三名.pdb
