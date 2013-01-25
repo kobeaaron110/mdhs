@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{585F4AFD-3EC3-4F97-8527-4F845F60E939}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MdhsBus</RootNamespace>
+    <AssemblyName>MdhsBus</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\ischool\localmodules\Customize\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AccountsReceivable.API, Version=1.1.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool2\modules\AccountsReceivable\AccountsReceivable.API.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.BarCode, Version=2.3.2.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool2\modules\SHSchoolLoader_Beta\Aspose.BarCode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\Aspose.Cells.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=4.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool2\modules\SHSchoolLoader_Beta\Aspose.Words.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Configuration, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\Campus\Campus.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=7.9.0.3, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA, Version=1.0.2.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Authentication, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Deployment, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.Deployment.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAUtil, Version=3.2.21.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.DSAUtil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.LogAgent, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.LogAgent.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Permission, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.Permission.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Presentation, Version=1.0.2.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Synchronization, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.Synchronization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.UDT, Version=1.0.2.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\kernel\FISCA.UDT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\Framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="IntelliSchool.DSA.ClientFramework, Version=1.2.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\IntelliSchool.DSA.ClientFramework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Data, Version=1.0.2.38, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\K12.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\K12.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MySchoolModule, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SHSchool.Data, Version=1.0.2.39, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\SHSchool.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.AccessControl, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\SmartSchool.AccessControl.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Core, Version=1.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader\SmartSchool.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Customization.Data, Version=1.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ischool\modules\SHSchoolLoader_Beta\SmartSchool.Customization.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountsReceivable.ReceiptUtility\PrivateRC.Designer.cs" />
+    <Compile Include="AccountsReceivable.ReceiptUtility\ReceiptDocument.cs" />
+    <Compile Include="AccountsReceivable.ReceiptUtility\Utilities.cs" />
+    <Compile Include="AssignBus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssignBus.Designer.cs">
+      <DependentUpon>AssignBus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssignBusNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssignBusNew.Designer.cs">
+      <DependentUpon>AssignBusNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusDetailForm.designer.cs">
+      <DependentUpon>BusDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusMoneyMitigate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusMoneyMitigate.Designer.cs">
+      <DependentUpon>BusMoneyMitigate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusSetupDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusSetupDetail.Designer.cs">
+      <DependentUpon>BusSetupDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BusRoute.cs" />
+    <Compile Include="Data\BusRouteDAO.cs" />
+    <Compile Include="Data\BusSetup.cs" />
+    <Compile Include="Data\BusSetupDAO.cs" />
+    <Compile Include="Data\BusStop.cs" />
+    <Compile Include="Data\BusStopDAO.cs" />
+    <Compile Include="Data\NewStudentRecord.cs" />
+    <Compile Include="Data\StudentByBus.cs" />
+    <Compile Include="Data\StudentByBusDAO.cs" />
+    <Compile Include="ImportLibrary\FieldsCollection.cs" />
+    <Compile Include="ImportLibrary\IPowerfulImportWizard.cs" />
+    <Compile Include="ImportLibrary\OptionCollection.cs" />
+    <Compile Include="ImportLibrary\PowerfulImportWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportLibrary\PowerfulImportWizard.designer.cs">
+      <DependentUpon>PowerfulImportWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportLibrary\Program.cs" />
+    <Compile Include="ImportLibrary\RowData.cs" />
+    <Compile Include="ImportLibrary\VirtualCheckBox.cs" />
+    <Compile Include="ImportLibrary\VirtualCheckItem.cs" />
+    <Compile Include="ImportLibrary\VirtualItem.cs" />
+    <Compile Include="ImportLibrary\VirtualRadioButton.cs" />
+    <Compile Include="MdhsBusBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MdhsBusBalance.Designer.cs">
+      <DependentUpon>MdhsBusBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewStudentBus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewStudentBus.Designer.cs">
+      <DependentUpon>NewStudentBus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewStudentTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewStudentTransfer.Designer.cs">
+      <DependentUpon>NewStudentTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentBar.Designer.cs">
+      <DependentUpon>PaymentBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentSetup.Designer.cs">
+      <DependentUpon>PaymentSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentSheet.designer.cs">
+      <DependentUpon>PaymentSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSheets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentSheets.Designer.cs">
+      <DependentUpon>PaymentSheets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSheetTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentSheetTemplate.Designer.cs">
+      <DependentUpon>PaymentSheetTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup.Designer.cs">
+      <DependentUpon>Setup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentBus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentBus.Designer.cs">
+      <DependentUpon>StudentBus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentBusBView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentBusBView.Designer.cs">
+      <DependentUpon>StudentBusBView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentBusDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StudentBusDetail.Designer.cs">
+      <DependentUpon>StudentBusDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentByBusDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentByBusDetail.Designer.cs">
+      <DependentUpon>StudentByBusDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudnetPaymentSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudnetPaymentSheet.Designer.cs">
+      <DependentUpon>StudnetPaymentSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudnetPaymentSheets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudnetPaymentSheets.Designer.cs">
+      <DependentUpon>StudnetPaymentSheets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Surveyform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Surveyform.Designer.cs">
+      <DependentUpon>Surveyform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TemplatePreference.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AccountsReceivable.ReceiptUtility\PrivateRC.resx">
+      <SubType>Designer</SubType>
+    </Resource>
+    <EmbeddedResource Include="AssignBus.resx">
+      <DependentUpon>AssignBus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssignBusNew.resx">
+      <DependentUpon>AssignBusNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusDetailForm.resx">
+      <DependentUpon>BusDetailForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusMoneyMitigate.resx">
+      <DependentUpon>BusMoneyMitigate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusSetupDetail.resx">
+      <DependentUpon>BusSetupDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportLibrary\PowerfulImportWizard.resx">
+      <DependentUpon>PowerfulImportWizard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MdhsBusBalance.resx">
+      <DependentUpon>MdhsBusBalance.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewStudentBus.resx">
+      <DependentUpon>NewStudentBus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewStudentTransfer.resx">
+      <DependentUpon>NewStudentTransfer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentBar.resx">
+      <DependentUpon>PaymentBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentSetup.resx">
+      <DependentUpon>PaymentSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentSheet.resx">
+      <DependentUpon>PaymentSheet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentSheets.resx">
+      <DependentUpon>PaymentSheets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentSheetTemplate.resx">
+      <DependentUpon>PaymentSheetTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup.resx">
+      <DependentUpon>Setup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentBus.resx">
+      <DependentUpon>StudentBus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentBusBView.resx">
+      <DependentUpon>StudentBusBView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentBusDetail.resx">
+      <DependentUpon>StudentBusDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentByBusDetail.resx">
+      <DependentUpon>StudentByBusDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudnetPaymentSheet.resx">
+      <DependentUpon>StudnetPaymentSheet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudnetPaymentSheets.resx">
+      <DependentUpon>StudnetPaymentSheets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Surveyform.resx">
+      <DependentUpon>Surveyform.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AccountsReceivable.ReceiptUtility\Aspose.Total.lic" />
+    <None Include="AccountsReceivable.ReceiptUtility\ReceiptTemplate.doc" />
+    <None Include="ImportLibrary\Web.config" />
+    <None Include="Resources\學生搭車月票.xls" />
+    <None Include="Resources\學生搭車調查表.xls" />
+    <None Include="Resources\學生搭車點名單.xls" />
+    <None Include="Resources\校車繳費單樣版-新生.doc" />
+    <None Include="Resources\校車繳費單樣版-現有學生.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccountsReceivable.ReceiptUtility\AccountsReceivable.ReceiptUtility.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

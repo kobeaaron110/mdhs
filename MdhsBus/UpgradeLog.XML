@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="MdhsBus">
+</Property><Property Name="方案檔" Value="C:\dep\code\MdhsBus\MdhsBus.sln">
+</Property><Property Name="Date" Value="2013年1月25日">
+</Property><Property Name="Time" Value="下午 13:35">
+</Property></Properties><Event ErrorLevel="0" Project="MdhsBus" Source="MdhsBus\MdhsBus.csproj" Description="專案轉換成功">
+</Event><Event ErrorLevel="3" Project="MdhsBus" Source="MdhsBus\MdhsBus.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="MdhsBus.sln" Description="方案轉換成功">
+</Event><Event ErrorLevel="3" Project="" Source="MdhsBus.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MdhsBus" Source="MdhsBus\MdhsBus.csproj" Description="掃描完成: 專案檔不需要升級。">
+</Event></UpgradeLog>
