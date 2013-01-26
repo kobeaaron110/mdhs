@@ -153,6 +153,7 @@ namespace AccountsReceivable.ReceiptUtility
             return payForm;
         }
 
+        // BMK 產生現有學生校車用繳費單
         public Document Generate2(List<PaymentReceipt> receipt)
         {
             //產生現有學生校車用繳費單

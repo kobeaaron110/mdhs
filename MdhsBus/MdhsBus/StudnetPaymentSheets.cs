@@ -328,6 +328,7 @@ namespace MdhsBus
                     Application.DoEvents();
                     prRecood.Add(StudentHistorys[var][StudentNumberList[var][i]].Receipt);
                 }
+                // 產生現有學生校車用繳費單
                 doc = rdoc.Generate2(prRecood);
                 if (doc.Sections.Count != 0)
                 {

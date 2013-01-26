@@ -16,6 +16,21 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <PublishUrl>http://localhost/MdhsBus/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,122 +52,120 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AccountsReceivable.API, Version=1.1.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool2\modules\AccountsReceivable\AccountsReceivable.API.dll</HintPath>
+    <Reference Include="AccountsReceivable.API">
+      <HintPath>..\..\..\ischool_1\modules\AccountsReceivable\AccountsReceivable.API.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Aspose.BarCode, Version=2.3.2.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool2\modules\SHSchoolLoader_Beta\Aspose.BarCode.dll</HintPath>
+    <Reference Include="Aspose.BarCode">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\Aspose.BarCode.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\Aspose.Cells.dll</HintPath>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\Aspose.Cells.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Aspose.Words, Version=4.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool2\modules\SHSchoolLoader_Beta\Aspose.Words.dll</HintPath>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\Aspose.Words.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Campus.Configuration, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\Campus\Campus.Configuration.dll</HintPath>
+    <Reference Include="Campus.Configuration">
+      <HintPath>..\..\..\ischool_1\modules\Campus\Campus.Configuration.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=7.9.0.3, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\DevComponents.DotNetBar2.dll</HintPath>
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>..\..\..\ischool_1\kernel\DevComponents.DotNetBar2.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA, Version=1.0.2.18, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.dll</HintPath>
+    <Reference Include="FISCA">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.Authentication, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.Authentication.dll</HintPath>
+    <Reference Include="FISCA.Authentication">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.Authentication.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.Deployment, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.Deployment.dll</HintPath>
+    <Reference Include="FISCA.Data">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.DSAUtil, Version=3.2.21.6, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.DSAUtil.dll</HintPath>
+    <Reference Include="FISCA.Deployment">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.Deployment.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.LogAgent, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.LogAgent.dll</HintPath>
+    <Reference Include="FISCA.Deployment.Administration">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.Deployment.Administration.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.Permission, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.Permission.dll</HintPath>
+    <Reference Include="FISCA.DSAClient">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.DSAClient.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.Presentation, Version=1.0.2.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.Presentation.dll</HintPath>
+    <Reference Include="FISCA.DSAUtil">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.DSAUtil.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.Synchronization, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.Synchronization.dll</HintPath>
+    <Reference Include="FISCA.LogAgent">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.LogAgent.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FISCA.UDT, Version=1.0.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\kernel\FISCA.UDT.dll</HintPath>
+    <Reference Include="FISCA.Permission">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.Permission.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\Framework.dll</HintPath>
+    <Reference Include="FISCA.Presentation">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="IntelliSchool.DSA.ClientFramework, Version=1.2.2.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\IntelliSchool.DSA.ClientFramework.dll</HintPath>
+    <Reference Include="FISCA.Synchronization">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.Synchronization.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="K12.Data, Version=1.0.2.38, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\K12.Data.dll</HintPath>
+    <Reference Include="FISCA.UDT">
+      <HintPath>..\..\..\ischool_1\kernel\FISCA.UDT.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="K12.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\K12.Presentation.dll</HintPath>
+    <Reference Include="Framework">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\Framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MySchoolModule, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="IntelliSchool.DSA.ClientFramework">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\IntelliSchool.DSA.ClientFramework.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SHSchool.Data, Version=1.0.2.39, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\SHSchool.Data.dll</HintPath>
+    <Reference Include="K12.Data">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\K12.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SmartSchool.AccessControl, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\SmartSchool.AccessControl.dll</HintPath>
+    <Reference Include="K12.Presentation">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\K12.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SmartSchool.Core, Version=1.0.2.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader\SmartSchool.Core.dll</HintPath>
+    <Reference Include="MySchoolModule">
+      <HintPath>..\..\..\ischool_1\modules\mdhsmodule\MySchoolModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SmartSchool.Customization.Data, Version=1.3.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ischool\modules\SHSchoolLoader_Beta\SmartSchool.Customization.Data.dll</HintPath>
+    <Reference Include="SHSchool.Data">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\SHSchool.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.AccessControl">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\SmartSchool.AccessControl.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Common.DotNetBar">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\SmartSchool.Common.DotNetBar.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Core">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\SmartSchool.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Customization.Data">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\SmartSchool.Customization.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SmartSchool.Customization.PlugIn">
+      <HintPath>..\..\..\ischool_1\modules\SHSchoolLoader_Beta\SmartSchool.Customization.PlugIn.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -163,6 +176,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountsReceivable.ReceiptUtility\PrivateRC.Designer.cs" />
@@ -440,6 +454,23 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
