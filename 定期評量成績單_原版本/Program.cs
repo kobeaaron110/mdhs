@@ -15,6 +15,10 @@ namespace 定期評量成績單
 {
     public class Program
     {
+        private static List<string> selectedStudents = new List<string>();
+        private static Dictionary<string, string> classStudentDic = new  Dictionary<string, string>();
+        private static bool isStu;
+        
         [FISCA.MainMethod]
         public static void Main()
         {
@@ -23,12 +27,17 @@ namespace 定期評量成績單
             FISCA.Permission.RoleAclSource.Instance.Root.SubCatalogs["明德外掛系統"].Add(new FISCA.Permission.DetailItemFeature("TeacherWordDetail", "導師的話明細"));
             if (!FISCA.Permission.UserAcl.Current["TeacherWord"].Executable) return;
             
-            
-            var btn = K12.Presentation.NLDPanels.Student.RibbonBarItems["統計報表"]["報表"]["明德女中"]["成績相關報表"]["定期評量成績單(個人版)"];
+            // 學生
+            var btn = K12.Presentation.NLDPanels.Student.RibbonBarItems["統計報表"]["報表"]["明德女中"]["成績相關報表"]["定期評量成績單(個人版)_"];
             btn.Enable = false;
             K12.Presentation.NLDPanels.Student.SelectedSourceChanged += delegate { btn.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count > 0; };
-            btn.Click += new EventHandler(Program_Click);
+            btn.Click += new EventHandler(Program_Click_Stu);
 
+            // 班級
+            var btnClass = K12.Presentation.NLDPanels.Class.RibbonBarItems["統計報表"]["報表"]["明德女中"]["成績相關報表"]["定期評量成績單(個人版)_"];
+            btnClass.Enable = false;
+            K12.Presentation.NLDPanels.Class.SelectedSourceChanged += delegate { btnClass.Enable = K12.Presentation.NLDPanels.Class.SelectedSource.Count > 0; };
+            btnClass.Click += new EventHandler(Program_Click_Class);
 
             if (FISCA.Permission.UserAcl.Current["TeacherWordDetail"].Editable || FISCA.Permission.UserAcl.Current["TeacherWordDetail"].Viewable)
             {
@@ -119,13 +128,43 @@ namespace 定期評量成績單
             return levelNumber;
         }
 
+        static void Program_Click_Stu(object sender_, EventArgs e_)
+        {
+            isStu = true;
+            selectedStudents = K12.Presentation.NLDPanels.Student.SelectedSource;
+            Program_Click(sender_, e_);
+        }
+        static void Program_Click_Class(object sender_, EventArgs e_)
+        {
+            isStu = false;
+            List<string> selectedStudentsClass = K12.Presentation.NLDPanels.Class.SelectedSource;
+            AccessHelper accessHelperTemp = new AccessHelper();
+            List<ClassRecord> classRecords = accessHelperTemp.ClassHelper.GetClass(selectedStudentsClass);
+            selectedStudents.Clear();
+            foreach (ClassRecord c in classRecords)
+            {
+                foreach (StudentRecord s in c.Students)
+                {
+                    if (!selectedStudents.Contains(s.StudentID))
+                    {
+                        selectedStudents.Add(s.StudentID);
+
+                        //classStudentDic
+                        classStudentDic.Add(c.ClassName, s.StudentID);
+                    }
+                }
+
+            }
+            Program_Click( sender_,  e_);
+        }
+
         static void Program_Click(object sender_, EventArgs e_)
         {
             ConfigForm form = new ConfigForm();
             string whereClause;
 
             //aaron
-            // BMK ------- UDT 
+            // BMK UDT 
             UDTTeacherWords teacherWord = new UDTTeacherWords();
                                     
             //UDTAccess.Insert(teacherWord);
@@ -150,9 +189,13 @@ namespace 定期評量成績單
                 List<StudentRecord> deletePreRecords = new List<StudentRecord>();
                 List<StudentRecord> deleteSelectedRecords = new List<StudentRecord>();
                 //取得列印設定
+                //2222
+                
                 Configure conf = form.Configure;
+                // 2013-01-23 aaron 拉到全域變數
                 //建立測試的選取學生(先期不管怎麼選就是印這些人)
-                List<string> selectedStudents = K12.Presentation.NLDPanels.Student.SelectedSource;
+                //List<string> selectedStudents = K12.Presentation.NLDPanels.Student.SelectedSource;
+
                 // BMK 建立合併欄位總表
                 DataTable table = new DataTable();
                 #region 所有的合併欄位

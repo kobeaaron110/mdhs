@@ -29,8 +29,6 @@ C:\Documents and Settings\Dylan.Huang\桌面\定期評量成績單\obj\Debug\Gen
 C:\Documents and Settings\Dylan.Huang\桌面\定期評量成績單\obj\Debug\GenerateResource.write.1.tlog
 C:\Documents and Settings\Dylan.Huang\桌面\定期評量成績單\obj\Debug\定期評量成績單.dll
 C:\Documents and Settings\Dylan.Huang\桌面\定期評量成績單\obj\Debug\定期評量成績單.pdb
-C:\dep\ischool_2\localmodules\Customize\定期評量成績單.dll
-C:\dep\ischool_2\localmodules\Customize\定期評量成績單.pdb
 C:\dep\code\定期評量成績單_原版本\obj\Debug\ResolveAssemblyReference.cache
 C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單.CloneConfigure.resources
 C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單.ConfigForm.resources
@@ -38,6 +36,8 @@ C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單.NewC
 C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單.Properties.Resources.resources
 C:\dep\code\定期評量成績單_原版本\obj\Debug\GenerateResource.read.1.tlog
 C:\dep\code\定期評量成績單_原版本\obj\Debug\GenerateResource.write.1.tlog
-C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單.dll
-C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單.pdb
 C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單.TeacherWord.resources
+C:\dep\ischool_2\localmodules\Customize\定期評量成績單2.dll
+C:\dep\ischool_2\localmodules\Customize\定期評量成績單2.pdb
+C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單2.dll
+C:\dep\code\定期評量成績單_原版本\obj\Debug\定期評量成績單2.pdb
